@@ -58,7 +58,7 @@ public class OrdersController : Controller
         order.OrderId = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // marek test
         order.CreatedTime = DateTime.Now;
         order.DeliveryLocation = new LatLong(51.5001, -0.1239);
-            order.UserId = PizzaApiExtensions.GetUserId(HttpContext);
+        order.UserId = PizzaApiExtensions.GetUserId(HttpContext);
 
         // Enforce existence of Pizza.SpecialId and Topping.ToppingId
         // in the database - prevent the submitter from making up
@@ -119,7 +119,7 @@ public class OrdersController : Controller
             await webPushClient.SendNotificationAsync(pushSubscription, payload, vapidDetails);
         }
         catch (Exception ex)
-    {
+        {
             Console.Error.WriteLine("Error sending push notification: " + ex.Message);
         }
     }

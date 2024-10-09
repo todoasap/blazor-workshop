@@ -30,7 +30,7 @@ public class Pizza
 
     public decimal GetBasePrice()
     {
-        if(Special == null) throw new NullReferenceException($"{nameof(Special)} was null when calculating Base Price.");
+        if (Special == null) throw new NullReferenceException($"{nameof(Special)} was null when calculating Base Price.");
         return ((decimal)Size / (decimal)DefaultSize) * Special.BasePrice;
     }
 
