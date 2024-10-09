@@ -23,6 +23,11 @@ public class Pizza
 
     public List<PizzaTopping> Toppings { get; set; } = new();
 
+    public Pizza() // marek test
+    {
+        Id = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+    }
+
     public decimal GetBasePrice()
     {
         if(Special == null) throw new NullReferenceException($"{nameof(Special)} was null when calculating Base Price.");

@@ -21,4 +21,9 @@ public class Address
 
     [Required, MaxLength(20)]
     public string PostalCode { get; set; } = string.Empty;
+
+    public Address() // marek test
+    {
+        Id = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+    }
 }

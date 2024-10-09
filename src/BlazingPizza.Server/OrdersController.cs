@@ -55,6 +55,7 @@ public class OrdersController : Controller
     [HttpPost]
     public async Task<ActionResult<int>> PlaceOrder(Order order)
     {
+        order.OrderId = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // marek test
         order.CreatedTime = DateTime.Now;
         order.DeliveryLocation = new LatLong(51.5001, -0.1239);
             order.UserId = PizzaApiExtensions.GetUserId(HttpContext);
@@ -74,7 +75,7 @@ public class OrdersController : Controller
             }
         }
 
-        _db.Orders.Attach(order);
+        _db.Orders.Add(order); // marek test: .Attach(order);
         await _db.SaveChangesAsync();
 
         // In the background, send push notifications if possible
